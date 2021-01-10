@@ -17,11 +17,11 @@
     <th>Opis</th>
     <th>Czy obejrzane?</th>
     </thead>
-{% for todo in todos %}
+{% for episode in episodes %}
     <tr>
-        <td><a href="/mando/{{ loop.index }}">{{ todo.title }}</a></td>
-        <td>{{ todo.description }}</td>
-        <td>{{ todo.viewed }}</td>
+        <td><a href="/mando/{{ loop.index }}">{{ episode.title }}</a></td>
+        <td>{{ episode.description }}</td>
+        <td>{{ episode.viewed }}</td>
     </tr>
 {% endfor %}
 </table>

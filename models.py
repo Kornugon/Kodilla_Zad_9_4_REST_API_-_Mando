@@ -1,13 +1,37 @@
+import os
 import json
 
+SAVED_FOLDER_NAME = 'Saved'
+FILE_NAME = "mando.json"
+FILE_PATH = os.path.join(SAVED_FOLDER_NAME, FILE_NAME)
 
-class Todos:
-    def __init__(self):
+
+class File:
+    def __init__(self, file_path: str):
+        self.file_path = file_path
+
+    def load_from_file(self):
+        os.makedirs(os.path.dirname(self.file_path), exist_ok=True)
         try:
-            with open("todos.json", "r") as f:
-                self.todos = json.load(f)
+            with open(self.file_path, "r") as f:
+                data = json.load(f)
+                return data
         except FileNotFoundError:
-            self.todos = []
+            data = []
+
+
+    def save_file(self, data):
+        os.makedirs(os.path.dirname(self.file_path), exist_ok=True)
+        with open(self.file_path, "w") as f:
+            json.dump(data, f)
+
+
+
+
+class Todos(File):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.todos = self.load_from_file()
 
     def all(self):
         return self.todos
@@ -24,8 +48,7 @@ class Todos:
         self.save_all()
 
     def save_all(self):
-        with open("todos.json", "w") as f:
-            json.dump(self.todos, f)
+        self.save_file(self.todos)
 
     def delete(self, id):
         todo = self.get(id)
@@ -44,5 +67,4 @@ class Todos:
             return True
         return False
 
-todos = Todos()
-
+episodes = Todos(file_path=FILE_PATH)

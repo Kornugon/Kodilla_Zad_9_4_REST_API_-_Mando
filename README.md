@@ -8,10 +8,10 @@ Just in case I added requirements_all.txt for full view.
 To run the application use app.py file.
 
 Main page (really just JSON overview) might be on below address.
-> <http://127.0.0.1:5000/api/v1/mando/>
+> <http://127.0.0.1:5000/api/v2/mando/>
 
 An episode page (view/delete/update) might be on below address. Where at the end number represents an id (episode number).
-> <http://127.0.0.1:5000/api/v1/episode/1>
+> <http://127.0.0.1:5000/api/v2/episode/1>
 
 An episode of the series has data as below, stored as JSON:
 - "id"
